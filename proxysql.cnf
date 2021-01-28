@@ -1,0 +1,144 @@
+datadir="/var/lib/proxysql"
+
+proxysql_servers =
+(
+    {
+        hostname="proxysql-1"
+        port=6032
+        weight=0
+        comment="proxysql-1"
+    },
+    {
+        hostname="proxysql-2"
+        port=6032
+        weight=0
+        comment="proxysql-2"
+    },
+    {
+        hostname="proxysql-3"
+        port=6032
+        weight=0
+        comment="proxysql-3"
+    }
+)
+
+admin_variables=
+{
+    admin_credentials="admin:admin;cluster1:secret1pass"
+    mysql_ifaces="0.0.0.0:6032"
+    cluster_username="cluster1"
+    cluster_password="secret1pass"
+    cluster_check_interval_ms=200
+    cluster_check_status_frequency=100
+    cluster_mysql_query_rules_save_to_disk=true
+    cluster_mysql_servers_save_to_disk=true
+    cluster_mysql_users_save_to_disk=true
+    cluster_proxysql_servers_save_to_disk=true
+    cluster_mysql_query_rules_diffs_before_sync=3
+    cluster_mysql_servers_diffs_before_sync=3
+    cluster_mysql_users_diffs_before_sync=3
+    cluster_proxysql_servers_diffs_before_sync=3
+    restapi_enabled="true"
+    restapi_port="6070"
+    web_enabled="true"
+    web_port="6080"
+}
+
+mysql_variables=
+{
+    threads=4
+    max_connections=2048
+    default_query_delay=0
+    default_query_timeout=36000000
+    eventslog_default_log="1"
+    eventslog_filename="/dev/stdout"
+    eventslog_format="2"
+    have_compress=true
+    poll_timeout=2000
+    interfaces="0.0.0.0:6033"
+    default_schema="information_schema"
+    stacksize=1048576
+    server_version="5.5.30"
+    connect_timeout_server=3000
+    monitor_username="root"
+    monitor_password="OgeJNcvqGa20"
+    monitor_history=600000
+    monitor_connect_interval=2000
+    monitor_ping_interval=2000
+    monitor_read_only_interval=2000
+    monitor_read_only_timeout=500
+    ping_interval_server_msec=120000
+    ping_timeout_server=500
+    commands_stats=true
+    sessions_sort=true
+    connect_retries_on_failure=10
+}
+
+mysql_users:
+(
+    {
+        username="root"
+        password="OgeJNcvqGa20"
+        active=1
+        use_ssl=0
+        default_hostgroup=1
+        schema_locked=0
+        transaction_persistent=1
+        fast_forward=0
+        backend=1
+        frontend=1
+        max_connections=10000
+    }
+)
+
+mysql_query_rules:
+(
+    {
+        rule_id=1
+        active=1
+        flagIN=0
+        match_digest="."
+        negate_match_pattern=0
+        re_modifiers="CASELESS"
+        log=1
+        apply=0
+    }
+)
+
+mysql_servers:
+(
+    {
+        hostgroup_id=1
+        hostname="35.194.189.167"
+        port=3306
+        gtid_port=0
+        weight=1
+        compression=0
+        max_connections=1000
+        max_replication_lag=0
+        use_ssl=0
+        max_latency_ms=0
+    },
+    {
+        hostgroup_id=2
+        hostname="35.194.189.167"
+        port=3306
+        gtid_port=0
+        weight=1
+        compression=0
+        max_connections=1000
+        max_replication_lag=0
+        use_ssl=0
+        max_latency_ms=0
+    }
+)
+
+mysql_replication_hostgroups:
+(
+    {
+        writer_hostgroup=1
+        reader_hostgroup=2
+        check_type="read_only"
+        comment="cluster1"
+    }
+)
