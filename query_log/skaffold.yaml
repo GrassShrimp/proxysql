@@ -1,0 +1,13 @@
+apiVersion: skaffold/v2beta11
+kind: Config
+metadata:
+  name: query-log
+build:
+  artifacts:
+  - image: query-log
+    docker:
+      dockerfile: Dockerfile
+deploy:
+  kustomize:
+    paths:
+    - kustomize

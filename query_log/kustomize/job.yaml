@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: query-log
+  labels:
+    app: query-log
+spec:
+  backoffLimit: 5
+  ttlSecondsAfterFinished: 10
+  template:
+    metadata:
+      name: query-log
+      labels:
+        app: query-log
+    spec:
+      containers:
+      - name: query-log
+        image: query-log:latest
+      restartPolicy: Never
