@@ -14,6 +14,10 @@ check current context of kubernetes is __docker-desktop__
 ```bash
 $ kubectl config current-context
 ```
+initialize terrafrom module
+```bash
+$ terraform init
+```
 launch proxysql cluster and mysql on kubernetes
 ```bash
 $ terraform apply -auto-approve
