@@ -14,7 +14,7 @@ check current context of kubernetes is __docker-desktop__
 ```bash
 $ kubectl config current-context
 ```
-initialize terrafrom module
+initialize terraform module
 ```bash
 $ terraform init
 ```
