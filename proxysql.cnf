@@ -142,3 +142,27 @@ mysql_replication_hostgroups:
         comment="cluster1"
     }
 )
+
+mysql_query_rules:
+(
+    {
+            rule_id=1
+            active=1
+            flagIN=0
+            match_digest="^SELECT.*FOR UPDATE$"
+            negate_match_pattern=0
+            re_modifiers="CASELESS"
+            destination_hostgroup=1
+            apply=1
+    },
+    {
+            rule_id=2
+            active=1
+            flagIN=0
+            match_digest="^SELECT"
+            negate_match_pattern=0
+            re_modifiers="CASELESS"
+            destination_hostgroup=2
+            apply=1
+    }
+)
